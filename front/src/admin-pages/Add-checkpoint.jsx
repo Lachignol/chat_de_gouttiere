@@ -1,0 +1,206 @@
+import React from "react";
+import axios from "axios";
+import MapLocation from "../components/Map-location/Map-location";
+import { useEffect } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
+const AddCheckpoint = () => {
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
+  const [adress, setAdress] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [checkpoints, setCheckpoints] = useState([]);
+
+  const courseId = useParams();
+
+  useEffect(() => {
+    const requestCheckpoints = async () => {
+      setLoading(true);
+      try {
+        let requete = await axios.get(
+          `http://localhost:3000/api/get-checkpoint/${courseId.id}`
+        );
+        if (requete.data) {
+          setCheckpoints(requete.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      setLoading(false);
+    };
+    requestCheckpoints();
+  }, []);
+
+  const handleAdress = async (e) => {
+    e.preventDefault();
+    console.log(e.target[0].value);
+    // setAdress(e.target.value)
+    try {
+      const response = await axios.get(
+        `https://api-adresse.data.gouv.fr/search/?q=${e.target[0].value}`
+      );
+
+      console.log(response.data);
+      setAdress(response.data.features[0].properties.label);
+      setLatitude(response.data.features[0].geometry.coordinates[0]);
+      setLongitude(response.data.features[0].geometry.coordinates[1]);
+    } catch (error) {}
+  };
+
+  const handleDelete = async (checkpointName) => {
+    try {
+      console.log(checkpointName);
+      await axios.delete(
+        `http://localhost:3000/api/delete-checkpoint/${courseId.id}/${checkpointName}`,
+        {
+          headers: { Authorization: localStorage.getItem("token") },
+        }
+      );
+      console.log("checkpoint supprimé");
+      setCheckpoints(checkpoints.filter((el) => el.name !== checkpointName));
+      //trouver methode d'actualisation des course
+    } catch (error) {
+      console.error("Erreur lors de la suppression du checkpoint", error);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(e.target[1].value);
+
+    const checkpoint = {
+      name: e.target[0].value,
+      longitude: longitude,
+      latitude: latitude,
+    };
+    try {
+      const response = await axios.post(
+        `http://localhost:3000/api/add-checkpoint/${courseId.id}`,
+        checkpoint,
+        {
+          headers: { Authorization: localStorage.getItem("token") },
+        }
+      );
+      if (response) {
+        console.log("checkpoint ajouté:");
+        setCheckpoints([...checkpoints, checkpoint]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <>
+      <div className=" flex flex-col">
+        {loading && <div>Loading</div>}
+        {!loading && (
+          
+            <div className="admin-title">
+          <div className=" lg:translate-x-80">
+              <h2 className="text-4xl text-center md:-translate-x-60 ">Espace administration</h2>
+              <h2 className="text-4xl text-center md:-translate-x-60 ">Ajout de checkpoint</h2>
+            <div className=" flex flex-row justify-center translate-x-20 mt-2">
+                <Link
+                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  to={"/home-page"}
+                > Allez a la page principal
+                </Link>
+              </div>
+              <table className=" mt-4 mb-4">
+                <thead className="border-2 border-black text-white bg-black ">
+                  <tr>
+                    <th>Name</th>
+                    <th>Longitude</th>
+                    <th>Latitude</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {checkpoints.map((checkpoint, index) => (
+                    <tr key={index}>
+                      <td className="admin-table-td">{checkpoint.name}</td>
+                      <td className="admin-table-td">{checkpoint.longitude}</td>
+                      <td className="admin-table-td">{checkpoint.latitude}</td>
+                      <td className="admin-table-td">
+                        <button
+                          className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                          onClick={() => handleDelete(checkpoint.name)}
+                        >
+                          Supprimer
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            
+            </div>
+          </div>
+        )}
+        <div className="md:-translate-x-4 lg:flex justify-center translate-x-80 ">
+          <form onSubmit={handleSubmit}>
+            <div className="grid gap-6 mb-6 md:grid-cols-1">
+              <label
+                htmlFor="nom du checkpoint"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Nom du checkpoint
+              </label>
+              <input
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                type="text"
+                placeholder={"name"}
+                name="name"
+                required
+              />
+              <div className="">
+                <button
+                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  type="submit"
+                >
+                  Ajout de checkpoint
+                </button>
+              </div>
+            </div>
+          </form>
+          <div className="flex ">
+            <form onSubmit={handleAdress}>
+              <div className="grid ml-2 gap-6 mb-6 md:grid-cols-1">
+                <label
+                  htmlFor="adresse du checkpoint"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Adresse du checkpoint{" "}
+                </label>
+                <input
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  type="text"
+                  placeholder={"tape une adresse"}
+                  name="adress"
+                />
+
+                <button
+                  className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  type="submit"
+                >
+                  Valider l'adresse <br /> (cliqué 2 fois sur la carte pour
+                  recentrer sur l'adresse)
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+          <div className="md:-translate-x-4 lg:flex justify-center translate-x-80">
+            {adress && (
+              <MapLocation longitude={longitude} latitude={latitude} />
+            )}
+          </div>
+      </div>
+    </>
+  );
+};
+
+export default AddCheckpoint;

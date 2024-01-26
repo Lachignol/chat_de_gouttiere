@@ -1,0 +1,12 @@
+
+
+
+modifier course (pb si pas d'image il se passe rien )
+gestion des erreur
+
+
+shéma modifier number
+
+
+ voir authentification avec stockage de facon secur (redux!!)
+
