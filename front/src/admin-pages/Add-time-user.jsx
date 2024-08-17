@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -117,20 +116,24 @@ const AddTimeUser = () => {
       {loading && <div>Loading</div>}
       {!loading && (
         <div>
-           <div className=" flex justify-end top-0  mt-10 ">
-                <Link
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  to={"/home-page"}
-                > Allez a la page principal
-                </Link>
-              </div>
+          <div className=" flex justify-end top-0  mt-10 ">
+            <Link
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              to={"/home-page"}
+            >
+              {" "}
+              Allez a la page principal
+            </Link>
+          </div>
           <div className="flex flex-col items-center relative translate-x-16">
             <div className="justify-start ">
               <h2 className="">Espace administration</h2>
-              <h2 className='text-4xl mb-3 border-4 border-red'>Ajouter un temps</h2>
+              <h2 className="text-4xl mb-3 border-4 border-red">
+                Ajouter un temps
+              </h2>
               <div className="border-4 border-red justify-start">
                 <table className="mt-4 mb-4">
-                  <thead className='border-2 border-black text-white bg-black '>
+                  <thead className="border-2 border-black text-white bg-black ">
                     <tr>
                       <th>Name</th>
                       <th>Finale time</th>
@@ -155,32 +158,32 @@ const AddTimeUser = () => {
                   </tbody>
                 </table>
               </div>
-            </div >
-<div className="">
-            <form
-              className="gap-6 mb-6 md:grid-col-2"
-              onSubmit={handleSubmitUser}
-            >
-              <label
-                htmlFor="select-user"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            </div>
+            <div className="">
+              <form
+                className="gap-6 mb-6 md:grid-col-2"
+                onSubmit={handleSubmitUser}
               >
-                Select an user
-              </label>
-              <select className='class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
-                {allUsers.map((el, i) => (
-                  <option value={el._id} key={i}>
-                    {el.pseudo}
-                  </option>
-                ))}
-              </select>
-              <button
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                type="submit"
-              >
-                Choisir un utilisateur
-              </button>
-            </form>
+                <label
+                  htmlFor="select-user"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Select an user
+                </label>
+                <select className='class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
+                  {allUsers.map((el, i) => (
+                    <option value={el._id} key={i}>
+                      {el.pseudo}
+                    </option>
+                  ))}
+                </select>
+                <button
+                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  type="submit"
+                >
+                  Choisir un utilisateur
+                </button>
+              </form>
             </div>
             <form
               className="grid gap-6 mb-6 md:grid-cols-1"
@@ -193,7 +196,7 @@ const AddTimeUser = () => {
                 >
                   User-Id
                 </label>
-                
+
                 <input
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   type="text"
@@ -222,14 +225,13 @@ const AddTimeUser = () => {
                 />
               </div>
               <div className="flex justify-center gap-2">
-          
                 <label
                   htmlFor="checkpointsOrder"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
                 >
                   ordre des checkpoints
                 </label>
-                <input 
+                <input
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
                   type="text"
                   placeholder={"ordre des checkpoints"}
@@ -237,12 +239,12 @@ const AddTimeUser = () => {
                   name="checkpointsOrder"
                   required
                 />
-            
+
                 <label
                   htmlFor="arrival-time"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
                 >
-                  heure d'arrivé
+                  {"heure d'arrivé"}
                 </label>
                 <input
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
@@ -253,17 +255,14 @@ const AddTimeUser = () => {
                   required
                 />
                 <div>
-              <button
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                type="submit"
-              >
-                Ajouter chrono
-              </button>
+                  <button
+                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    type="submit"
+                  >
+                    Ajouter chrono
+                  </button>
+                </div>
               </div>
-              
-              </div>
-            
-             
             </form>
           </div>
         </div>

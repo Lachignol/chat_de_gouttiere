@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 import MapLocation from "../components/Map-location/Map-location";
 
@@ -9,18 +8,18 @@ export default function FormCreateCourse() {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [showMap, setShowMap] = useState(false)
-  const [adress, setAdress] = useState(null);
+  const [, setAdress] = useState(null);
   const navigate = useNavigate();
 
   const handleAdress = async (e) => {
     e.preventDefault();
     console.log(e.target[0].value);
-    // setAdress(e.target.value)
     try {
       const response = await axios.get(
         `https://api-adresse.data.gouv.fr/search/?q=${e.target[0].value}`
       );
       console.log(response.data);
+      // console.log(adress)
 
       setAdress(response.data.features[0].properties.label);
       setShowMap(true);
@@ -121,7 +120,7 @@ export default function FormCreateCourse() {
               <div className="mb-6">
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="file_input">Upload file</label>
               <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" name="flyer" required></input>
-              <button className="mt- text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"type="submit">Ajouter course</button>
+              <button className="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"type="submit">Ajouter course</button>
               </div>
             </form>
             <form className="grid gap-6 mb-6 md:grid-cols-2" onSubmit={handleAdress}>

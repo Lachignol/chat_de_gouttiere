@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import MapLocation from "../components/Map-location/Map-location";
@@ -9,9 +8,10 @@ import { useState } from "react";
 export default function ModifyCourse() {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
-  const [adress, setAdress] = useState(null);
+  const [, setAdress] = useState(null);
   const [loading, setLoading] = useState(true);
   const [course, setCourse] = useState([]);
+  const [showMap, setShowMap] = useState(false)
   const navigate = useNavigate();
   const courseId = useParams();
 
@@ -52,7 +52,10 @@ export default function ModifyCourse() {
       setAdress(response.data.features[0].properties.label);
       setLatitude(response.data.features[0].geometry.coordinates[0]);
       setLongitude(response.data.features[0].geometry.coordinates[1]);
-    } catch (error) {}
+      setShowMap(true);
+    } catch (error) {
+      console.log(error)
+    }
   };
   // const onchangeLocalisation = async (e) => {
   //   setCourse({
@@ -237,16 +240,11 @@ export default function ModifyCourse() {
                       <button
                         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-4"
                         type="submit"
-                      >
-                        Valider l'adresse <br /> (cliqué 2 fois sur la carte
-                        pour recentrer sur l'adresse)
+                      >{"Valider l'adresse"}<br />{"(cliqué 2 fois sur la carte pour recentrer sur l'adresse)"}
                       </button>
                     </div>
                   </form>
                   <div className="-translate-x-32">
-                {adress && (
-                  <MapLocation longitude={longitude} latitude={latitude} />
-                )}
                 </div>
                 </div>
               </div>
@@ -254,6 +252,19 @@ export default function ModifyCourse() {
           </div>
         </div>
       )}
+      {showMap && (
+<div className="w-full mb-8">
+<div className="relative w-full px-28 rounded-lg shadow-lg">
+<MapLocation longitude={longitude} latitude={latitude} />
+<button
+  className="absolute top-2 right-2 text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-2 py-1"
+  onClick={() => setShowMap(false)} // Fermer la carte
+>
+  Fermer la carte
+</button>
+</div>
+</div>
+)}
     </div>
   );
 }
