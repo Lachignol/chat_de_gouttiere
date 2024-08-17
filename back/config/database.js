@@ -7,9 +7,15 @@ const {connect} = require('mongoose');
 //  Cette fonction est asynchrone (marquée par le mot-clé async), ce qui signifie qu'elle peut contenir des opérations asynchrones, comme la connexion à la base de données.
 const dbConnexion = async()=> {
     try {
-        await mongoose.connect(process.env.DATABASE)
-        // Cette ligne de code tente de se connecter à la base de données MongoDB. La fonction mongoose.connect prend en argument une chaîne de connexion à la base de données, qui contient généralement l'URL de la base de données, le nom d'utilisateur et le mot de passe. Si la connexion est établie avec succès, le message "Connexion ok" est affiché à la console.
-        console.log('Connexion ok')
+       await mongoose.connect(process.env.DATABASE, {
+            // Cherche ici les configurations globales
+            writeConcern: {
+                w: 'majority', // Peut-être l'erreur ici
+                wtimeout: 0
+            }})
+        // await mongoose.connect(process.env.DATABASE)
+        // // Cette ligne de code tente de se connecter à la base de données MongoDB. La fonction mongoose.connect prend en argument une chaîne de connexion à la base de données, qui contient généralement l'URL de la base de données, le nom d'utilisateur et le mot de passe. Si la connexion est établie avec succès, le message "Connexion ok" est affiché à la console.
+        // console.log('Connexion ok')
     } catch (error) {
         console.log(error)
     }}
