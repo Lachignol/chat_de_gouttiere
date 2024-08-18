@@ -99,24 +99,23 @@ export default function ModifyCourse() {
   };
 
   return (
-    <div>
+      <div className="container mx-auto px-4">
       {loading && <div>Loading</div>}
       {!loading && (
         <div>
           <div className="flex flex-col">
             <h2 className="text-center text-4xl mb-3 translate-x-20">Espace administration</h2>
-            <div className="text-end">
+            <div className=" text-end mb-4">
                 <Link
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   to={"/admin/all-courses"}
                 >{"Retournez sur l'espace administration"}
                 </Link>
               </div>
-            <h2 className="text-center text-4xl mb-3 translate-x-20">Modifier une course</h2>
+            <h2 className="text-center text-4xl mb-3">Modifier une course</h2>
             <div className="flex justify-center">
-              <div className="translate-x-60  ">
-                <div className="grid gap-6 mb-6 md:grid-cols-2 lg:grid-cols-2">
-                  <form onSubmit={handleSubmit}>
+              <div className="w-full lg:w-1/2 ">
+                  <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label
                         htmlFor="Nom de la course"
@@ -223,7 +222,7 @@ export default function ModifyCourse() {
                     </button>
                   </form>
                   <form
-                    className="grid gap-6 mb-6 md:grid-cols-2"
+                    className="space-y-6 mt-6"
                     onSubmit={handleAdress}
                   >
                     <div>
@@ -248,7 +247,7 @@ export default function ModifyCourse() {
                   </form>
                   <div className="-translate-x-32">
                 </div>
-                </div>
+                
               </div>
             </div>
           </div>

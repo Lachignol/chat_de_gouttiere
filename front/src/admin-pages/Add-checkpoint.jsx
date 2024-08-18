@@ -94,40 +94,41 @@ const AddCheckpoint = () => {
   };
 
   return (
-    <>
-      <div className=" flex flex-col">
+  
+    <div className="container mx-auto px-4 py-6">
+    <div className="flex flex-col items-center">
         {loading && <div>Loading</div>}
         {!loading && (
           
-            <div className="admin-title">
-          <div className=" lg:translate-x-80">
-              <h2 className="text-4xl text-center md:-translate-x-60 ">Espace administration</h2>
-              <h2 className="text-4xl text-center md:-translate-x-60 ">Ajout de checkpoint</h2>
-            <div className=" flex flex-row justify-center translate-x-20 mt-2">
+            <div className="w-full lg:w-2/3">
+          
+              <h2 className="text-4xl text-center mb-6 ">Espace administration</h2>
+              <h2 className="text-4xl text-center mb-6">Ajout de checkpoint</h2>
+            <div className=" flex justify-center mb-6">
                 <Link
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   to={"/admin/all-courses"}
                 >{"Retournez sur l'espace administration"}
                 </Link>
               </div>
-              <table className=" mt-4 mb-4">
-                <thead className="border-2 border-black text-white bg-black ">
+              <table className="w-full mb-6 border-collapse border border-gray-300">
+                <thead className="bg-gray-800 text-white">
                   <tr>
-                    <th>Name</th>
-                    <th>Longitude</th>
-                    <th>Latitude</th>
-                    <th>Delete</th>
+                    <th className="border border-gray-300 p-2">Name</th>
+                    <th className="border border-gray-300 p-2">Longitude</th>
+                    <th className="border border-gray-300 p-2">Latitude</th>
+                    <th className="border border-gray-300 p-2">Delete</th>
                   </tr>
                 </thead>
                 <tbody>
                   {checkpoints.map((checkpoint, index) => (
                     <tr key={index}>
-                      <td className="admin-table-td">{checkpoint.name}</td>
-                      <td className="admin-table-td">{checkpoint.longitude}</td>
-                      <td className="admin-table-td">{checkpoint.latitude}</td>
-                      <td className="admin-table-td">
+                      <td className="border border-gray-300 p-2">{checkpoint.name}</td>
+                      <td className="border border-gray-300 p-2">{checkpoint.longitude}</td>
+                      <td className="border border-gray-300 p-2">{checkpoint.latitude}</td>
+                      <td className="border border-gray-300 p-2">
                         <button
-                          className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                          className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5"
                           onClick={() => handleDelete(checkpoint.name)}
                         >
                           Supprimer
@@ -138,12 +139,12 @@ const AddCheckpoint = () => {
                 </tbody>
               </table>
             
-            </div>
+            
           </div>
         )}
-        <div className="md:-translate-x-4 lg:flex justify-center translate-x-80 ">
-          <form onSubmit={handleSubmit}>
-            <div className="grid gap-6 mb-6 md:grid-cols-1">
+        <div className="w-full lg:w-2/3 ">
+          <form onSubmit={handleSubmit}className="mb-6" >
+            <div className="grid gap-6 mb-6">
               <label
                 htmlFor="nom du checkpoint"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -167,9 +168,9 @@ const AddCheckpoint = () => {
               </div>
             </div>
           </form>
-          <div className="flex ">
-            <form onSubmit={handleAdress}>
-              <div className="grid ml-2 gap-6 mb-6 md:grid-cols-1">
+            <form onSubmit={handleAdress} className="mb-6">
+              <div className="grid gap-6">
+                <div>
                 <label
                   htmlFor="adresse du checkpoint"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -182,23 +183,24 @@ const AddCheckpoint = () => {
                   placeholder={"tape une adresse"}
                   name="adress"
                 />
-
+</div>
+<div>
                 <button
                   className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   type="submit"
                 >{"Valider l'adresse (cliqué 2 fois sur la carte pour recentrer sur l'adresse)"}
                 </button>
               </div>
+              </div>
             </form>
-          </div>
-        </div>
-          <div className="md:-translate-x-4 lg:flex justify-center translate-x-80">
             {adress && (
+          <div className="mt-6">
               <MapLocation longitude={longitude} latitude={latitude} />
-            )}
           </div>
+            )}
+            </div>
       </div>
-    </>
+    </div>
   );
 };
 

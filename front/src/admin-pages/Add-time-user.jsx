@@ -112,38 +112,37 @@ const AddTimeUser = () => {
   };
 
   return (
-    <div>
+    <div className="container mx-auto px-4">
       {loading && <div>Loading</div>}
       {!loading && (
-        <div>
-           <div className="text-end mt-10">
+        <div className="flex flex-col items-center">
+          <div className="text-end mt-10 w-full">
                 <Link
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   to={"/admin/all-courses"}
                 >{"Retournez sur l'espace administration"}
                 </Link>
               </div>
-          <div className="flex flex-col items-center relative translate-x-16">
-            <div className="justify-start ">
-              <h2 className="">Espace administration</h2>
-              <h2 className="text-4xl mb-3 border-4 border-red">
+              <div className="w-full max-w-4xl mt-10">
+              <h2 className="text-2xl font-bold mb-4">Espace administration</h2>
+              <h2 className="text-2xl font-bold mb-6">
                 Ajouter un temps
               </h2>
-              <div className="border-4 border-red justify-start">
-                <table className="mt-4 mb-4">
-                  <thead className="border-2 border-black text-white bg-black ">
+              <div className="overflow-x-auto shadow-md rounded-lg">
+              <table className="min-w-full bg-white">
+                  <thead className="bg-gray-800 text-white">
                     <tr>
-                      <th>Name</th>
-                      <th>Finale time</th>
-                      <th>Delete</th>
+                      <th className="py-3 px-6 text-left">Name</th>
+                      <th className="py-3 px-6 text-left">Finale time</th>
+                      <th className="py-3 px-6 text-left">Delete</th>
                     </tr>
                   </thead>
                   <tbody>
                     {allcourseUsers.map((user, index) => (
                       <tr key={index}>
-                        <td className="admin-table-td">{user.userName}</td>
-                        <td className="admin-table-td">{user.finaleTime}</td>
-                        <td className="admin-table-td">
+                        <td className="py-3 px-6">{user.userName}</td>
+                        <td className="py-3 px-6">{user.finaleTime}</td>
+                        <td className="py-3 px-6">
                           <button
                             className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                             onClick={() => handleDelete(user.userName)}
@@ -156,10 +155,10 @@ const AddTimeUser = () => {
                   </tbody>
                 </table>
               </div>
-            </div>
-            <div className="">
+           
+              <div className="mt-8 w-full">
               <form
-                className="gap-6 mb-6 md:grid-col-2"
+                className="flex flex-col md:flex-row gap-4"
                 onSubmit={handleSubmitUser}
               >
                 <label
@@ -184,7 +183,7 @@ const AddTimeUser = () => {
               </form>
             </div>
             <form
-              className="grid gap-6 mb-6 md:grid-cols-1"
+              className="mt-8 grid gap-6 mb-6 md:grid-cols-2"
               onSubmit={handleSubmit}
             >
               <div className="">
@@ -222,7 +221,7 @@ const AddTimeUser = () => {
                   required
                 />
               </div>
-              <div className="flex justify-center gap-2">
+              <div className="col-span-2 grid grid-cols-2 gap-4">
                 <label
                   htmlFor="checkpointsOrder"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
@@ -252,7 +251,7 @@ const AddTimeUser = () => {
                   name="finaleTime"
                   required
                 />
-                <div>
+                <div className="col-span-2 flex justify-end">
                   <button
                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     type="submit"

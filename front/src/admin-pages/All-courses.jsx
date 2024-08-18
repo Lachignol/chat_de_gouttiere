@@ -43,21 +43,22 @@ export default function AllCourseAdmin() {
   };
 
   return (
-    <div >
+    <div className="container mx-auto p-4">
       {loading && <div>Loading</div>}
       {!loading && (
-        <div className="flex flex-col relative">
-          <div className="">
-              <div className=" flex justify-end top-0  mt-10 ">
+        <>
+        <div className="flex flex-col">
+         
+              <div className=" flex justify-end mt-10">
                 <Link
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   to={"/home-page"}
                 > Allez sur le site
                 </Link>
               </div>
-            <h2 className="text-4xl mb-3 text-center translate-x-10 pt-20">Espace administration</h2>
-            <div className=" flex items-center translate-x-60">
-              <table className=" mt-4 mb-4 sm:flex-col sm: justify-start">
+            <h2 className="text-4xl mb-3 text-center pt-20">Espace administration</h2>
+            <div className="overflow-x-auto">
+              <table className="min-w-full mt-4 mb-4">
                 <thead className="border-2 border-black text-white bg-black ">
                   <tr>
                     <th>#</th>
@@ -68,11 +69,11 @@ export default function AllCourseAdmin() {
                 </thead>
                 <tbody>
                   {courses.map((course, index) => (
-                    <tr key={index}>
-                      <td className="admin-table-td"><img className="w-10 h-10 rounded-full" src={`http://localhost:3000/${course.flyer.src}`} alt="flyer de la course" /></td>
-                      <td className="admin-table-td">{course.titre}</td>
-                      <td className="admin-table-td">{course.date}</td>
-                      <td className="admin-table-td">
+                    <tr key={index} className="bg-white border-b">
+                      <td className="p-2"><img className="w-10 h-10 rounded-full" src={`http://localhost:3000/${course.flyer.src}`} alt="flyer de la course" /></td>
+                      <td className="p-2">{course.titre}</td>
+                      <td className="p-2">{course.date}</td>
+                      <td className="p-2 flex flex-col sm:flex-row gap-2">
                         <button
                           className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
                           onClick={() =>
@@ -113,7 +114,7 @@ export default function AllCourseAdmin() {
               </table>
             </div>
               </div>
-              <div className="flex justify-center translate-x-10">
+              <div className="flex justify-center mt-4">
                 <Link
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   to={"/create-course"}
@@ -121,7 +122,7 @@ export default function AllCourseAdmin() {
                   Crée une nouvelle course
                 </Link>
           </div>
-        </div>
+          </>
       )}
     </div>
   );
