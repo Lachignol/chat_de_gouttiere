@@ -1,8 +1,7 @@
-import React from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+
 import Navbar from "../components/Navbar/Navbar";
 import "./Derniere-Course.css";
 import Map from "../components/Map/Map";
@@ -11,7 +10,7 @@ const DerniereCourse = () => {
   const [loading, setLoading] = useState(true);
   const [course, setCourse] = useState([]);
   const [classement, setClassement] = useState([]);
-  const [checkpointsOfCourse, setCheckpointsOfCourse] = useState([]);
+  const [, setCheckpointsOfCourse] = useState([]);
   const [checkpointsOrderOfUsers, setCheckpointsOrderOfUsers] = useState([]);
   const [checkpointsOrderOfUser, setCheckpointsOrderOfUser] = useState([]);
   const [checked, setChecked] = useState(false);
@@ -23,20 +22,22 @@ const DerniereCourse = () => {
         let requeteRecupCourse = await axios.get(
           `http://localhost:3000/api/get-all-courses/`
         );
-        if (requeteRecupCourse.data[1]) {
-          setCourse(requeteRecupCourse.data[1]);
+        if (requeteRecupCourse.data) {
+          setCourse(
+            requeteRecupCourse.data[requeteRecupCourse.data.length - 2]
+          );
           let requeteRecupCheckpointOfCourse = await axios.get(
-            `http://localhost:3000/api/get-checkpoint/${requeteRecupCourse.data[1]._id}`
+            `http://localhost:3000/api/get-checkpoint/${course._id}`
           );
           if (requeteRecupCheckpointOfCourse) {
             setCheckpointsOfCourse(requeteRecupCheckpointOfCourse.data);
             let requeteRecupClassement = await axios.get(
-              `http://localhost:3000/api/get-classement/${requeteRecupCourse.data[1]._id}`
+              `http://localhost:3000/api/get-classement/${course._id}`
             );
             if (requeteRecupClassement) {
               setClassement(requeteRecupClassement.data);
               let requeteRecupCheckpointOrder = await axios.get(
-                `http://localhost:3000/api/get-checkpoint-info/${requeteRecupCourse.data[1]._id}`
+                `http://localhost:3000/api/get-checkpoint-info/${course._id}`
               );
               if (requeteRecupCheckpointOrder) {
                 console.log(requeteRecupCheckpointOrder.data);
@@ -59,7 +60,7 @@ const DerniereCourse = () => {
       console.log(userId);
       console.log(checkpointsOrderOfUsers);
       let userCheckpoints = checkpointsOrderOfUsers.filter(
-        (el, i) => el.userId == userId
+        (el) => el.userId == userId
       );
       console.log(userCheckpoints);
       setCheckpointsOrderOfUser(...userCheckpoints);
@@ -114,7 +115,6 @@ const DerniereCourse = () => {
                     <li key={i}>
                       {i == 0 && (
                         <div>
-
                           <button
                             className="text-white bg-yellow-400 hover:bg-yellow-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-yellow-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2"
                             onClick={() => handleUserCheckpointOrder(el.userId)}
@@ -122,38 +122,46 @@ const DerniereCourse = () => {
                             {`Nom du coureur n°${i + 1}: ${
                               el.userName
                             }  chrono: ${el.finaleTime}`}
-                            <img  className="w-14 m-auto" src="/premierpos.png/" />
+                            <img
+                              className="w-14 m-auto"
+                              src="/premierpos.png/"
+                            />
                           </button>
                         </div>
                       )}
                       {i == 1 && (
                         <div>
-                        <button
-                          className="text-white bg-gray-400 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-yellow-900 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2"
-                          onClick={() => handleUserCheckpointOrder(el.userId)}
-                        >
-                          {`Nom du coureur n°${i + 1}: ${
-                            el.userName
-                          }  chrono: ${el.finaleTime}`}
-                          <img  className="w-14 m-auto" src="/deuxiemepos.png/" />
-                        </button>
+                          <button
+                            className="text-white bg-gray-400 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-yellow-900 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2"
+                            onClick={() => handleUserCheckpointOrder(el.userId)}
+                          >
+                            {`Nom du coureur n°${i + 1}: ${
+                              el.userName
+                            }  chrono: ${el.finaleTime}`}
+                            <img
+                              className="w-14 m-auto"
+                              src="/deuxiemepos.png/"
+                            />
+                          </button>
                         </div>
                       )}
                       {i == 2 && (
                         <div>
-                        <button
-                          className="text-white bg-yellow-600 hover:bg-yellow-500  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-gray-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2"
-                          onClick={() => handleUserCheckpointOrder(el.userId)}
-                        >
-                          {`Nom du coureur n°${i + 1}: ${
-                            el.userName
-                          }  chrono: ${el.finaleTime}`}
-                          <img  className="w-14 m-auto" src="/troisiemepos.png/" />
-                        </button>
+                          <button
+                            className="text-white bg-yellow-600 hover:bg-yellow-500  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-gray-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2"
+                            onClick={() => handleUserCheckpointOrder(el.userId)}
+                          >
+                            {`Nom du coureur n°${i + 1}: ${
+                              el.userName
+                            }  chrono: ${el.finaleTime}`}
+                            <img
+                              className="w-14 m-auto"
+                              src="/troisiemepos.png/"
+                            />
+                          </button>
                         </div>
                       )}
                       {i == 3 && (
-                        
                         <button
                           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2"
                           onClick={() => handleUserCheckpointOrder(el.userId)}
@@ -162,7 +170,6 @@ const DerniereCourse = () => {
                             el.userName
                           }  chrono: ${el.finaleTime}`}
                         </button>
-                      
                       )}
                     </li>
                   ))}
@@ -191,7 +198,7 @@ const DerniereCourse = () => {
             <div className="items-center flex flex-wrap">
               <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
                 <img
-                  alt="..."
+                  alt="flyer de la course"
                   className="max-w-full rounded-lg shadow-lg"
                   src={`http://localhost:3000/${course.flyer.src}`}
                 />
