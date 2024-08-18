@@ -42,7 +42,7 @@ router.get("/api/get-all-courses/",getAllcourses)
 
 router.get("/api/get-one-course/:id",getOneCourse)
 
-//AdminPage//s
+//AdminPage//
 
 router.post("/api/add-course/",imageUpload.single('flyer'),authenticateAdmin,AddCourse)
 router.delete("/api/delete-course/:id",authenticateAdmin,DeleteCourse)
