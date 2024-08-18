@@ -53,10 +53,6 @@ exports.getCheckpointsInfoBycourseId = async (req, res) => {
       );
       return obj;
     });
-
-    // const classementUsers = createObjectClassementUsers.sort((a, b)=> (a.finaleTime > b.finaleTime ? 1 : -1))
-    // a utiliser pour ordre decroissant .sort((a, b) => a - b)
-    console.log(checkpointsInfo);
     res.status(200).json(checkpointsInfo);
   } catch (error) {
     console.log(error);
@@ -69,14 +65,6 @@ exports.getCheckpointsBycourseId = async (req, res) => {
     let id = req.params.id;
     let checkpointInfo = await Courses.findById(id);
     const checkpointsInfo = checkpointInfo.checkpoints;
-
-    // .map((el)=>{const obj= {}
-    //  obj[`${el.userName}`]=el.userId ; obj["checkpointsInfo"]= el.checkpointsOrder.map(el=>allFinalTime.checkpoints[el-1])
-    // return obj });
-
-    // const classementUsers = createObjectClassementUsers.sort((a, b)=> (a.finaleTime > b.finaleTime ? 1 : -1))
-    // a utiliser pour ordre decroissant .sort((a, b) => a - b)
-    console.log(checkpointsInfo);
     res.status(200).json(checkpointsInfo);
   } catch (error) {
     console.log(error);
