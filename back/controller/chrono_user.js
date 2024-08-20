@@ -17,6 +17,13 @@ exports.addChronoUser = async (req, res) => {
     checkpointsOrder:req.body.checkpointsOrder.split(";").map((el,i)=>parseInt(el)),
     finaleTime:req.body.finaleTime,
   };
+  //recuperer la course avec courseId et 
+  // let course = await Courses.findById(id);
+  //   const checkpointOfTheCourse = checkpointInfo.checkpoints;
+
+  //et verifier si checkpointsOrders n'a pas deux fois le meme numero 
+  // et si il a tous et les meme numero que dans checkpointOfTheCourse
+  
 console.log(chronoUser.checkpointsOrder)
   let enterChronoUser = new ChronoUsers(chronoUser);
     let newchronoUser = await Courses.updateOne({"_id": courseId },{$addToSet:{"chrono" :enterChronoUser}})

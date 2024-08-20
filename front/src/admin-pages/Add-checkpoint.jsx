@@ -32,6 +32,7 @@ const AddCheckpoint = () => {
     requestCheckpoints();
   }, []);
 
+  
   const handleAdress = async (e) => {
     e.preventDefault();
     console.log(e.target[0].value);

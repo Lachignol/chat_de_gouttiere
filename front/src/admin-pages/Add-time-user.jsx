@@ -8,13 +8,17 @@ const AddTimeUser = () => {
   const [loading, setLoading] = useState(true);
   const [allUsers, setAllUsers] = useState([]);
   const [allcourseUsers, setAllCourseUsers] = useState([]);
+  const [checkpoints, setCheckpoints] = useState([]);
   const [user, setUser] = useState([]);
   const courseId = useParams();
 
   useEffect(() => {
     const requestAllUsers = async () => {
-      setLoading(true);
+      setLoading(true);  
       try {
+        let requete = await axios.get(
+          `http://localhost:3000/api/get-checkpoint/${courseId.id}`
+        );
         let requeteAllUsers = await axios.get(
           `http://localhost:3000/api/get-all-users/`,
           {
@@ -24,6 +28,9 @@ const AddTimeUser = () => {
         let requeteAllCourseUsers = await axios.get(
           `http://localhost:3000/api/get-chrono-users/${courseId.id}`
         );
+        if (requete.data) {
+          setCheckpoints(requete.data);
+        }
         if (requeteAllUsers.data) setUser(requeteAllUsers.data[0]);
         setAllUsers(requeteAllUsers.data);
         setAllCourseUsers(requeteAllCourseUsers.data);
@@ -32,10 +39,10 @@ const AddTimeUser = () => {
       }
       setLoading(false);
     };
-
     requestAllUsers();
   }, []);
-
+//gerer lordre des checkpoint avec cette donnée la 
+console.log(checkpoints.length)
   const onchange = async (e) => {
     setUser({
       ...user,
