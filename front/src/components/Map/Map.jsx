@@ -13,61 +13,61 @@ function Map(props) {
   
   
   const checkpointIcon1 = new Icon({
-    iconUrl: "http://localhost:5173/svg-check/number-one.svg",
-    iconSize: [30, 125],
+    iconUrl: "http://localhost:5173/svg-check/number-one.png",
+    iconSize: [64,64],
     iconAnchor: [40, 90],
     popupAnchor: [-25, -40],
   });
   
   const checkpointIcon2 = new Icon({
-    iconUrl: "http://localhost:5173/svg-check/number-two.svg",
-    iconSize: [30, 125],
+    iconUrl: "http://localhost:5173/svg-check/number-two.png",
+    iconSize: [64,64],
     iconAnchor: [40, 90],
     popupAnchor: [-25, -40],
   });
   
   const checkpointIcon3 = new Icon({
-    iconUrl: "http://localhost:5173/svg-check/number-three.svg",
-    iconSize: [30, 125],
+    iconUrl: "http://localhost:5173/svg-check/number-three.png",
+    iconSize: [64, 64],
     iconAnchor: [40, 90],
     popupAnchor: [-25, -40],
   });
   
   const checkpointIcon4 = new Icon({
-    iconUrl: "http://localhost:5173/svg-check/number-four.svg",
-    iconSize: [30, 125],
+    iconUrl: "http://localhost:5173/svg-check/number-four.png",
+    iconSize: [64, 64],
     iconAnchor: [40, 90],
     popupAnchor: [-25, -40],
     });
     
     const checkpointIcon5 = new Icon({
-      iconUrl: "http://localhost:5173/svg-check/number-five.svg",
-      iconSize: [30, 125],
+      iconUrl: "http://localhost:5173/svg-check/number-five.png",
+      iconSize: [64, 64],
       iconAnchor: [40, 90],
       popupAnchor: [-25, -40],
     });
     
     const checkpointIcon6 = new Icon({
-      iconUrl: "http://localhost:5173/svg-check/number-six.svg",
-      iconSize: [30, 125],
+      iconUrl: "http://localhost:5173/svg-check/number-six.png",
+      iconSize: [64, 64],
       iconAnchor: [40, 90],
       popupAnchor: [-25, -40],
     });
     const checkpointIcon7 = new Icon({
-      iconUrl: "http://localhost:5173/svg-check/number-seven.svg",
-      iconSize: [30, 125],
+      iconUrl: "http://localhost:5173/svg-check/number-seven.png",
+      iconSize: [64, 64],
       iconAnchor: [40, 90],
       popupAnchor: [-25, -40],
     });
     const checkpointIcon8 = new Icon({
-      iconUrl: "http://localhost:5173/svg-check/number-eight.svg",
-      iconSize: [30, 125],
+      iconUrl: "http://localhost:5173/svg-check/number-eight.png",
+      iconSize: [64, 64],
       iconAnchor: [40, 90],
       popupAnchor: [-25, -40],
     });
     const checkpointIcon9 = new Icon({
-      iconUrl: "http://localhost:5173/svg-check/number-nine.svg",
-      iconSize: [30, 125],
+      iconUrl: "http://localhost:5173/svg-check/number-nine.png",
+      iconSize: [64, 64],
       iconAnchor: [40, 90],
       popupAnchor: [-25, -40],
     });
