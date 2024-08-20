@@ -104,8 +104,7 @@ export default function ModifyCourse() {
       {!loading && (
         <div>
           <div className="flex flex-col">
-            <h2 className="text-center text-4xl mb-3 translate-x-20">Espace administration</h2>
-            <div className=" text-end mb-4">
+            <div className=" text-end mt-12 mb-4">
                 <Link
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   to={"/admin/all-courses"}
@@ -215,7 +214,7 @@ export default function ModifyCourse() {
                       required
                     ></input>
                     <button
-                      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-4"
+                      className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-green mt-4"
                       type="submit"
                     >
                       Modifier course

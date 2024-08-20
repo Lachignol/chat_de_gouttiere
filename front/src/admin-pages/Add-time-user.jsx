@@ -124,8 +124,7 @@ const AddTimeUser = () => {
                 </Link>
               </div>
               <div className="w-full max-w-4xl mt-10">
-              <h2 className="text-2xl font-bold mb-4">Espace administration</h2>
-              <h2 className="text-2xl font-bold mb-6">
+              <h2 className="text-2xl text-center font-bold mb-6">
                 Ajouter un temps
               </h2>
               <div className="overflow-x-auto shadow-md rounded-lg">
@@ -165,7 +164,7 @@ const AddTimeUser = () => {
                   htmlFor="select-user"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Select an user
+                  Selectionnez un utilisateur:
                 </label>
                 <select className='class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
                   {allUsers.map((el, i) => (
@@ -178,12 +177,12 @@ const AddTimeUser = () => {
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   type="submit"
                 >
-                  Choisir un utilisateur
+                   {"Confirmer l'utilisateur"}
                 </button>
               </form>
             </div>
             <form
-              className="mt-8 grid gap-6 mb-6 md:grid-cols-2"
+              className="mt-8 grid gap-6 mb-6 md:grid-cols-1"
               onSubmit={handleSubmit}
             >
               <div className="">
@@ -191,12 +190,10 @@ const AddTimeUser = () => {
                   htmlFor="User-id"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  User-Id
                 </label>
-
                 <input
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  type="text"
+                  type="hidden"
                   placeholder={"userId"}
                   value={`${user._id}`}
                   name="userId"
@@ -204,16 +201,17 @@ const AddTimeUser = () => {
                   required
                 />
               </div>
-              <div>
+              <div className="">
                 <label
                   htmlFor="User-id"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  User-Name
+                  Utilisateur Selectionné
                 </label>
                 <input
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-orange-50 border border-orange-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-orange-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500"
                   type="text"
+                  readOnly="readOnly"
                   placeholder={"pseudo"}
                   value={`${user.pseudo}`}
                   onChange={onchange}
@@ -221,17 +219,17 @@ const AddTimeUser = () => {
                   required
                 />
               </div>
-              <div className="col-span-2 grid grid-cols-2 gap-4">
+              <div className="col-span-1 grid grid-cols-1 gap-4">
                 <label
                   htmlFor="checkpointsOrder"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
                 >
-                  ordre des checkpoints
+                  Ordre des checkpoints:
                 </label>
                 <input
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
                   type="text"
-                  placeholder={"ordre des checkpoints"}
+                  placeholder={"format suivant: 1;2;4;6"}
                   onChange={onchange}
                   name="checkpointsOrder"
                   required
@@ -251,9 +249,9 @@ const AddTimeUser = () => {
                   name="finaleTime"
                   required
                 />
-                <div className="col-span-2 flex justify-end">
+                <div className="col-span-1 flex justify-center">
                   <button
-                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                     type="submit"
                   >
                     Ajouter chrono

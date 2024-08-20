@@ -22,7 +22,6 @@ exports.AddUser = async (req, res) => {
     // un objet user est créé à partir des données de la requête (req.body) et du mot de passe haché. Cet objet contient des informations sur l'utilisateur, telles que le prénom, le nom de famille, le nom d'utilisateur, l'e-mail, le mot de passe et le rôle.
     const user = {
       pseudo: req.body.pseudo,
-      age: req.body.age,
       mail: req.body.mail,
       password: passwordHash,
     };
