@@ -1,2 +1,7 @@
-https://github.com/Lachignol/chat_de_gouttiere/blob/8af9bff389ac92c6f78f9fffdbacee76c51356c9/readme-file/espace-admin.mov
+
+https://github.com/user-attachments/assets/0404fcb8-0ae3-430b-bbf1-d4628d9c5693
+
+https://github.com/user-attachments/assets/0899c85f-2d8a-491a-8997-7e6b6329da69
+
+
 
