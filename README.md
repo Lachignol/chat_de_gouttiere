@@ -6,7 +6,7 @@ Ce site web est dédié à la création et à l'administration de courses de vé
 
 ### Fonctionnalités pour les Utilisateurs
 
-#### Prochaine Course à Venir : 
+#### Prochaine Course : 
 - Affiche les détails de la prochaine course, incluant la date, l'heure de départ, l'affiche, et la description.
 
 #### Dernière Course : 
